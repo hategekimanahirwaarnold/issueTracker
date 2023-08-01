@@ -44,6 +44,7 @@
           url: url,
           success: function(data)
           {
+            console.log("received data on the front end: ", data)
             let issues= [];
             data.forEach(function(ele) {
               console.log(ele);

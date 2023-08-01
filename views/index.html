@@ -46,14 +46,14 @@
       <form id="testForm" class="border">
         <input type="text" name="issue_title" placeholder="*Title" style="width: 100px" required=''><br>
         <textarea type="text" name="issue_text" placeholder="*Text" style="width: 100px" required=''></textarea><br>
-        <input type="text" name="created_by" placeholder="*Created by" style="width: 100px" required=''><br>
+        <input type="text" name="created_by" placeholder="*Created by-test" style="width: 100px" required=''><br>
         <input type="text" name="assigned_to" placeholder="(opt)Assigned to" style="width: 100px"><br>
         <input type="text" name="status_text" placeholder="(opt)Status text" style="width: 100px"><br>
         <button type="submit">Submit Issue</button>
       </form><br>
       <h3>Update issue on <i>apitest</i> (Change any or all to update issue on the _id supplied)</h3>
       <form id="testForm2" class="border">
-        <input type="text" name="_id" placeholder="*_id" style="width: 100px" required=''><br>
+        <input type="text" name="_id" placeholder="*_id" style="width: 100px" required=""><br>
         <input type="text" name="issue_title" placeholder="(opt)Title" style="width: 100px"><br>
         <textarea type="text" name="issue_text" placeholder="(opt)Text" style="width: 100px"></textarea><br>
         <input type="text" name="created_by" placeholder="(opt)Created by" style="width: 100px"><br>
@@ -64,7 +64,7 @@
       </form><br>
       <h3>Delete issue on <i>apitest</i></h3>
       <form id="testForm3" class="border">
-        <input type="text" name="_id" placeholder="_id" style="width: 100px" required=''><br>
+        <input type="text" name="_id" placeholder="_id" style="width: 100px" required=""><br>
         <button type="submit">Delete Issue</button>
       </form>
       <code id='jsonResult'></code>
@@ -82,7 +82,13 @@
             type: 'post',
             data: $('#testForm').serialize(),
             success: function(data) {
+             // console.log('received data: ', data);
               $('#jsonResult').text(JSON.stringify(data));
+            },
+            error: function(data) {
+              let err = data.responseJSON;
+              //console.log('received data: ', err);
+              $('#jsonResult').text(JSON.stringify(err));
             }
           });
           e.preventDefault();
